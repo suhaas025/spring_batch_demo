@@ -1,0 +1,180 @@
+<div class="space-y-6">
+  <!-- Header Section -->
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div>
+      <h1 class="page-title">Hyundai Batch Processing Dashboard</h1>
+      <p class="text-hyundai-gray">Monitor and manage customer data processing</p>
+    </div>
+    <div class="flex space-x-4">
+      <button (click)="loadData()" class="btn-secondary flex items-center space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
+        </svg>
+        <span>Refresh</span>
+      </button>
+      <button (click)="launchImportJob()" class="btn-primary flex items-center space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+        </svg>
+        <span>Import Customers</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Stats Overview -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div class="card bg-gradient-to-br from-hyundai-blue to-hyundai-blue-dark text-white">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm opacity-80">Total Customers</p>
+          <p class="text-2xl font-bold">{{stats?.totalCustomers || 0}}</p>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 opacity-80" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+        </svg>
+      </div>
+    </div>
+    <div class="card bg-gradient-to-br from-green-500 to-green-600 text-white">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm opacity-80">Processed</p>
+          <p class="text-2xl font-bold">{{stats?.processedCustomers || 0}}</p>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 opacity-80" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+    </div>
+    <div class="card bg-gradient-to-br from-yellow-500 to-yellow-600 text-white">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm opacity-80">New</p>
+          <p class="text-2xl font-bold">{{stats?.newCustomers || 0}}</p>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 opacity-80" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
+        </svg>
+      </div>
+    </div>
+    <div class="card bg-gradient-to-br from-red-500 to-red-600 text-white">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm opacity-80">Failed</p>
+          <p class="text-2xl font-bold">{{stats?.failedCustomers || 0}}</p>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 opacity-80" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="flex justify-end space-x-4">
+    <button (click)="launchProcessingJob()" class="btn-secondary">
+      Process Customers
+    </button>
+    <button (click)="deleteAllCustomers()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-colors">
+      Delete All Customers
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="card flex justify-center items-center py-8">
+    <div class="flex items-center space-x-4">
+      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-hyundai-blue"></div>
+      <p class="text-hyundai-gray">Loading data...</p>
+    </div>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="bg-red-50 border-l-4 border-red-500 p-4 rounded-md" role="alert">
+    <div class="flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+      </svg>
+      <div>
+        <p class="font-bold text-red-700">Error</p>
+        <p class="text-sm text-red-600">{{ error }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Customer List -->
+  <div *ngIf="!loading && !error" class="card">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="section-title">Customer List</h2>
+      <div class="flex items-center space-x-2">
+        <input type="text" placeholder="Search customers..." class="input-field">
+        <select class="input-field">
+          <option value="all">All Status</option>
+          <option value="NEW">New</option>
+          <option value="PROCESSED">Processed</option>
+          <option value="FAILED">Failed</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Updated</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr *ngFor="let customer of customers" class="hover:bg-gray-50">
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-sm font-medium text-hyundai-blue">{{ customer.name }}</div>
+              <div class="text-sm text-gray-500">ID: {{ customer.id }}</div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {{ customer.email }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span [ngClass]="['status-badge', getStatusClass(customer.status)]">
+                {{ customer.status }}
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {{ formatDate(customer.createdAt) }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {{ formatDate(customer.updatedAt) }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex items-center justify-between border-t border-gray-200 px-4 py-3 sm:px-6 mt-4">
+      <div class="flex items-center">
+        <select class="input-field text-sm">
+          <option>10 per page</option>
+          <option>25 per page</option>
+          <option>50 per page</option>
+        </select>
+      </div>
+      <div class="flex items-center space-x-2">
+        <button class="btn-secondary px-3 py-1 text-sm">Previous</button>
+        <span class="text-sm text-gray-700">Page 1 of 1</span>
+        <button class="btn-secondary px-3 py-1 text-sm">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && !error && customers.length === 0" class="card text-center py-12">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+    </svg>
+    <h3 class="text-lg font-medium text-gray-900 mb-2">No Customers Available</h3>
+    <p class="text-gray-500 mb-6">Start by importing customers using the Import button above.</p>
+    <button (click)="launchImportJob()" class="btn-primary">Import Customers</button>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Custom Hyundai Colors */
+:root {
+  --hyundai-blue: #002C5F;
+  --hyundai-blue-dark: #001F42;
+  --hyundai-blue-light: #00AAD2;
+  --hyundai-gray: #666666;
+}
+
+/* Typography */
+@layer base {
+  body {
+    @apply antialiased text-gray-900 bg-gray-50;
+  }
+}
+
+/* Component Classes */
+@layer components {
+  .page-title {
+    @apply text-2xl font-bold text-gray-900;
+  }
+
+  .section-title {
+    @apply text-xl font-semibold text-gray-900;
+  }
+
+  .card {
+    @apply bg-white shadow-sm rounded-lg p-6;
+  }
+
+  .btn-primary {
+    @apply bg-hyundai-blue text-white px-4 py-2 rounded-md hover:bg-hyundai-blue-dark transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hyundai-blue;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-hyundai-blue border border-hyundai-blue px-4 py-2 rounded-md hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hyundai-blue;
+  }
+
+  .input-field {
+    @apply block w-full rounded-md border-gray-300 shadow-sm focus:border-hyundai-blue focus:ring-hyundai-blue sm:text-sm;
+  }
+
+  .status-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .status-success {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .status-warning {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+
+  .status-error {
+    @apply bg-red-100 text-red-800;
+  }
+
+  /* Navigation Styles */
+  .nav-link {
+    @apply border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors duration-200;
+  }
+
+  .nav-link-active {
+    @apply border-hyundai-blue text-hyundai-blue;
+  }
+
+  .nav-icon {
+    @apply h-5 w-5 mr-1;
+  }
+
+  .header-button {
+    @apply bg-gray-50 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hyundai-blue transition-colors duration-200;
+  }
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .text-hyundai-blue {
+    color: var(--hyundai-blue);
+  }
+
+  .text-hyundai-blue-light {
+    color: var(--hyundai-blue-light);
+  }
+
+  .text-hyundai-gray {
+    color: var(--hyundai-gray);
+  }
+
+  .bg-hyundai-blue {
+    background-color: var(--hyundai-blue);
+  }
+
+  .bg-hyundai-blue-dark {
+    background-color: var(--hyundai-blue-dark);
+  }
+
+  .bg-hyundai-blue-light {
+    background-color: var(--hyundai-blue-light);
+  }
+
+  .border-hyundai-blue {
+    border-color: var(--hyundai-blue);
+  }
+
+  .hover\:text-hyundai-blue:hover {
+    color: var(--hyundai-blue);
+  }
+
+  .hover\:bg-hyundai-blue:hover {
+    background-color: var(--hyundai-blue);
+  }
+
+  .hover\:bg-hyundai-blue-dark:hover {
+    background-color: var(--hyundai-blue-dark);
+  }
+
+  .focus\:border-hyundai-blue:focus {
+    border-color: var(--hyundai-blue);
+  }
+
+  .focus\:ring-hyundai-blue:focus {
+    --tw-ring-color: var(--hyundai-blue);
+  }
+}
+
+/* You can add global styles to this file, and also import other style files */
